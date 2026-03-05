@@ -1,36 +1,76 @@
-import org.example.Main;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-@ExtendWith(ResultAnalyzer.class)
 public class MainTest {
 
-    @DisplayName("Palindrom Sayılar Testi")
-    @Test
-    public void testIsPalindrome(){
-        assertEquals(Main.isPalindrome(-1221), true);
-        assertEquals(Main.isPalindrome(707), true);
-        assertEquals(Main.isPalindrome(11212), false);
+    public static void main(String[] args) {
+
+        System.out.println(isPalindrome(-1221));
+        System.out.println(isPalindrome(707));
+        System.out.println(isPalindrome(11212));
+
+        System.out.println(isPerfectNumber(6));
+        System.out.println(isPerfectNumber(28));
+        System.out.println(isPerfectNumber(5));
+        System.out.println(isPerfectNumber(-1));
+
+        System.out.println(numberToWords(123));
+        System.out.println(numberToWords(1010));
+        System.out.println(numberToWords(-12));
     }
 
-    @DisplayName("Mükemmel Sayılar Testi")
-    @Test
-    public void testIsPerfectNumber(){
-        assertEquals(Main.isPerfectNumber(6), true);
-        assertEquals(Main.isPerfectNumber(28), true);
-        assertEquals(Main.isPerfectNumber(5), false);
-        assertEquals(Main.isPerfectNumber(-1), false);
+    // Palindrom kontrolü
+    public static boolean isPalindrome(int number) {
 
+        number = Math.abs(number);
+
+        int original = number;
+        int reverse = 0;
+
+        while (number > 0) {
+            int digit = number % 10;
+            reverse = reverse * 10 + digit;
+            number = number / 10;
+        }
+
+        return original == reverse;
     }
 
-    @DisplayName("Sayıları Kelimelere Cevirme Testi")
-    @Test
-    public void testNumberToWords(){
-        assertEquals(Main.numberToWords(123), "One Two Three");
-        assertEquals(Main.numberToWords(1010), "One Zero One Zero");
-        assertEquals(Main.numberToWords(-12), "Invalid Value");
+    // Mükemmel sayı kontrolü
+    public static boolean isPerfectNumber(int number) {
+
+        if (number < 1) {
+            return false;
+        }
+
+        int sum = 0;
+
+        for (int i = 1; i < number; i++) {
+            if (number % i == 0) {
+                sum += i;
+            }
+        }
+
+        return sum == number;
+    }
+
+    // Sayıyı kelimelere çevirme
+    public static String numberToWords(int number) {
+
+        if (number < 0) {
+            return "Invalid Value";
+        }
+
+        String[] words = {
+                "Zero","One","Two","Three","Four",
+                "Five","Six","Seven","Eight","Nine"
+        };
+
+        String numStr = String.valueOf(number);
+        String result = "";
+
+        for (int i = 0; i < numStr.length(); i++) {
+            int digit = numStr.charAt(i) - '0';
+            result += words[digit] + " ";
+        }
+
+        return result.trim();
     }
 }
