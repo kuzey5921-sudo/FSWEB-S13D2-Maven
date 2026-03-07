@@ -1,24 +1,14 @@
+package org.example;
+
 public class MainTest {
 
     public static void main(String[] args) {
-
         System.out.println(isPalindrome(-1221));
-        System.out.println(isPalindrome(707));
-        System.out.println(isPalindrome(11212));
-
         System.out.println(isPerfectNumber(6));
-        System.out.println(isPerfectNumber(28));
-        System.out.println(isPerfectNumber(5));
-        System.out.println(isPerfectNumber(-1));
-
         System.out.println(numberToWords(123));
-        System.out.println(numberToWords(1010));
-        System.out.println(numberToWords(-12));
     }
 
-    // Palindrom kontrolü
     public static boolean isPalindrome(int number) {
-
         number = Math.abs(number);
 
         int original = number;
@@ -27,15 +17,13 @@ public class MainTest {
         while (number > 0) {
             int digit = number % 10;
             reverse = reverse * 10 + digit;
-            number = number / 10;
+            number /= 10;
         }
 
         return original == reverse;
     }
 
-    // Mükemmel sayı kontrolü
     public static boolean isPerfectNumber(int number) {
-
         if (number < 1) {
             return false;
         }
@@ -51,24 +39,29 @@ public class MainTest {
         return sum == number;
     }
 
-    // Sayıyı kelimelere çevirme
     public static String numberToWords(int number) {
-
         if (number < 0) {
             return "Invalid Value";
         }
 
-        String[] words = {
-                "Zero","One","Two","Three","Four",
-                "Five","Six","Seven","Eight","Nine"
-        };
-
-        String numStr = String.valueOf(number);
         String result = "";
+        String numStr = String.valueOf(number);
 
         for (int i = 0; i < numStr.length(); i++) {
-            int digit = numStr.charAt(i) - '0';
-            result += words[digit] + " ";
+            char digit = numStr.charAt(i);
+
+            switch (digit) {
+                case '0': result += "Zero "; break;
+                case '1': result += "One "; break;
+                case '2': result += "Two "; break;
+                case '3': result += "Three "; break;
+                case '4': result += "Four "; break;
+                case '5': result += "Five "; break;
+                case '6': result += "Six "; break;
+                case '7': result += "Seven "; break;
+                case '8': result += "Eight "; break;
+                case '9': result += "Nine "; break;
+            }
         }
 
         return result.trim();
