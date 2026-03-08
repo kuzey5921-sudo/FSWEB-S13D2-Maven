@@ -27,7 +27,6 @@ public class MainTest {
         int sum = 0;
 
         for (int i = 1; i < number; i++) {
-
             if (number % i == 0) {
                 sum += i;
             }
@@ -42,57 +41,57 @@ public class MainTest {
             return "Invalid Value";
         }
 
-        String result = "";
-        String num = String.valueOf(number);
+        StringBuilder result = new StringBuilder();
+        String numStr = String.valueOf(number);
 
-        for (int i = 0; i < num.length(); i++) {
+        for (int i = 0; i < numStr.length(); i++) {
 
-            char digit = num.charAt(i);
+            char digit = numStr.charAt(i);
 
             switch (digit) {
 
                 case '0':
-                    result += "Zero ";
+                    result.append("Zero ");
                     break;
 
                 case '1':
-                    result += "One ";
+                    result.append("One ");
                     break;
 
                 case '2':
-                    result += "Two ";
+                    result.append("Two ");
                     break;
 
                 case '3':
-                    result += "Three ";
+                    result.append("Three ");
                     break;
 
                 case '4':
-                    result += "Four ";
+                    result.append("Four ");
                     break;
 
                 case '5':
-                    result += "Five ";
+                    result.append("Five ");
                     break;
 
                 case '6':
-                    result += "Six ";
+                    result.append("Six ");
                     break;
 
                 case '7':
-                    result += "Seven ";
+                    result.append("Seven ");
                     break;
 
                 case '8':
-                    result += "Eight ";
+                    result.append("Eight ");
                     break;
 
                 case '9':
-                    result += "Nine ";
+                    result.append("Nine ");
                     break;
             }
         }
 
-        return result.trim();
+        return result.toString().trim();
     }
 }
